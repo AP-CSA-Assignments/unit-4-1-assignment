@@ -37,7 +37,8 @@ Sum is 22
 ```
 
 ## Problem 2
-Write a program that will input a list of test scores from the keyboard. When the user enters -1, print the largest score.
+Write a program that asks the user how many numbers they wish to input.  The computer will then prompt for that many inputs,
+and find the maximum value from the numbers inputted.
 
 Hint: You need to initialize your maximum value to some value for your program to work.  You can either use an if-statement
 inside of your loop to check whether the user has entered a value; if it is the first value entered, you can set your max to this
@@ -96,11 +97,15 @@ System.out.println("Sum is " + sum);
 
 // Problem 2
 Scanner sc = new Scanner(System.in);
-int input = 0;
+int input;
 int max = Integer.MIN_VALUE; // Guarantees I always get the maximum value
+int count = 0;
+System.out.println("How many numbers do you wish to input?");
+count = sc.nextInt();
 
 System.out.println("Enter the scores:");
-while (input != -1)
+int i = 0;
+while (i < count)
 {
   input = sc.nextInt();
   if (input > max)
