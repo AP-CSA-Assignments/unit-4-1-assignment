@@ -1,4 +1,4 @@
-# unit-3-assignment-2
+# unit-4-1-assignment
 
 ## Git Config
 ```
@@ -22,169 +22,119 @@ After you compile the shape classes, you only need to compile and run `Main.java
 
 # Instructions  
 
-Do each of the following in a single program.
-
 ## Problem 1
-Write a program to test if a double input from the keyboard is equal to the double 12.345. If the input is equal to 12.345, print "YES" (without the quotes).
+Write a program that requests that the user inputs any non-negative numbers, and if the user inputs the number -1, the program should print the sum of all numbers. Make sure -1 does not get added to the total sum.
 
-Sample run 1:
+Sample run:
 ```
-Please enter a double:
-54.321
-```
-Sample run 2:
-```
-Please enter a double:
-12.345
-YES
+Enter any numbers (Enter -1 to stop)
+2
+12
+3
+5
+-1
+Sum is 22
 ```
 
 ## Problem 2
-Write a program to test if an integer input from the keyboard is equal to 48. If it is, print "YES" (without the quotes).
+Write a program that will input a list of test scores from the keyboard. When the user enters -1, print the largest score.
 
-Sample run 1:
+Hint: You need to initialize your maximum value to some value for your program to work.  You can either use an if-statement
+inside of your loop to check whether the user has entered a value; if it is the first value entered, you can set your max to this
+value; otherwise, you can check if the user has entered something larger than your max, and set it to the user-input instead.
+
+Alternatively, you can merely set your maximum value to `Integer.MIN_VALUE`.
+
+Sample Run:
 ```
-Please enter an integer:
-46
-```
-Sample run 2:
-```
-Please enter an integer:
-48
-YES
+Enter the Scores:
+44
+22
+88
+-1
+
+The largest score is 88
 ```
 
 ## Problem 3
-Write a program that takes two integers from the keyboard and tests if the second integer is twice the first integer. If the second integer is twice the first integer, print "YES" (without the quotes).
+Write a program that requests the user to input a word, then prints out the first two letters - then skips a letter - then prints out the next two consecutive letters - then skips a letter - then this process repeats through the rest of the word.
 
-Sample run 1:
-```
-Please enter two integers:
-44
-65
-```
-Sample run 2:
-```
-Please enter two integers:
-20
-40
-YES
-```
+Hint #1 - You will need to use the substring method inside a loop in order to determine which letters of the String should be printed.
 
-## Problem 4
-Write a program to test if an integer input from the keyboard is divisible by two, or divisible by 3, or both!
+Hint #2 - You can use the length method on the String to work out when this loop should end.
 
-Sample Run 1:
+Sample run #1:
 ```
-Please enter an integer:
-7
+Input a word:
+calculator
+cacuatr
 ```
-Sample Run 2:
+Sample run #2:
 ```
-Please enter an integer:
-4
-Divisible by 2!
-```
-Sample Run 3: 
-```
-Please enter an integer:
-9
-Divisible by 3!
-```
-Sample Run 4: 
-```
-Please enter an integer:
-18
-Divisible by 2!
-Divisible by 3!
-```
-(Hint: You will probably need to use the % operator for this one.)
-
-## Problem 5
-Write a program that takes the input of an integer number from the keyboard and prints "Even" if the integer is even , and prints “Odd" otherwise. You must use an else statement to gain full credit for this exercise.
-
-Sample run 1
-```
-Please enter an integer
-7
-Odd
-```
-Sample run 2
-```
-Please enter an integer
--2
-Even
+Input a word:
+okay
+oky
 ```
 
-## Problem 6
-Write a program that takes input as a String letter grade from the keyboard and translates it to a grade range. For example, if a user enters “A”, the program should output “90-100”.
+## Sample Solutions
+```java
+// Problem 1
+Scanner sc = new Scanner(System.in);
+int x = 0;
+int sum = 0;
 
-- “A” = “90-100”
-- “B” = “80-90”
-- “C” = “70-80”
-- “D” = “60-70”
-- “F” = “0-60”
+System.out.println("Enter any numbers greater than 0.  Enter -1 to stop");
+while (x != -1)
+{
+  x = sc.nextInt();
+  sum += x;
+}
 
-The program should only accept the five strings outlined above. If the user enters any other strings, the program should print “Invalid letter grade”.
+sum++; // To account for -1
 
-Sample run 1: 
-```
-Please enter a letter grade:
-A
-90-100
-```
-Sample run 2: 
-```
-Please enter a letter grade:
-a
-Invalid letter grade
-```
-Sample run 3:
-```
-Please enter a letter grade:
-abc
-Invalid letter grade
-To gain full credit for this exercise you will need to use else if statements when checking the grade.
-```
+System.out.println("Sum is " + sum);
 
-Hint: For comparing the strings, you should be using the `.equals()` method from the String class.
+// Problem 2
+Scanner sc = new Scanner(System.in);
+int input = 0;
+int max = Integer.MIN_VALUE; // Guarantees I always get the maximum value
 
-## Problem 7
-Create a program to check if a user can do simple addition. The program will generate two random integers.
-- The first should be between 0 and 50 (inclusive)
-- The second should be between 51 and 100 (inclusive)
+System.out.println("Enter the scores:");
+while (input != -1)
+{
+  input = sc.nextInt();
+  if (input > max)
+  {
+    max = input;
+  }
+}
 
-Then, user should input an integer as their answer to the sum of the two numbers. If they enter the correct sum print “Correct!” otherwise print “Wrong”. You must use an else statement in your code to receive full credit for this exercise.
+System.out.println("The largest score is " + max);
 
-Sample run 1:
-```
-4 + 47 = ?
-> 12
-Wrong
-```
-Sample run 2:
-```
-8 + 82 = ?
-> 90
-Correct!
-```
+// Problem 3
+Scanner sc = new Scanner(System.in);
+String str;
 
-## Problem 8
-We are going to revisit a former coding activity on temperature, with a slight adjustment. 
+System.out.println("Input a word:");
+str = sc.nextLine();
 
-You are running an experiment that involves tracking human body temperature. The "normal" body temperature can have a wide range from 97 to 99 degrees Fahrenheit.
+int index = 0;
+while (index < str.length())
+{
+  // Printing two letters at a time
+  if (index < str.length()-1)
+  {
+    System.out.print(str.substring(index, index+2));
+  }
 
-Write the code for the sensor that will be tracking the temperature. If the temperature falls between 97 and 99 (inclusive) your code should print “Temperature is OK”. Otherwise, your code should print “NOT NORMAL”.
-
-Sample Run 1:
-```
-What is the temperature?
-101
-NOT NORMAL
-```
-Sample Run 2:
-```
-What is the temperature?
-98
-Temperature is OK
+  // If I am at the last letter,
+  // then only print that last letter
+  // instead of last two letters to avoid
+  // out of bounds error
+  if (index == str.length()-1)
+  {
+    System.out.print(str.substring(index));
+  }
+  index += 3; // Increment by 3 to skip every third letter
+}
 ```
