@@ -112,6 +112,7 @@ while (i < count)
   {
     max = input;
   }
+  i++;
 }
 
 System.out.println("The largest score is " + max);
