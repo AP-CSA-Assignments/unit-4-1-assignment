@@ -127,20 +127,10 @@ str = sc.nextLine();
 int index = 0;
 while (index < str.length())
 {
-  // Printing two letters at a time
-  if (index < str.length()-1)
+  // The index of every third letter is equal to 2 modulo 3
+  if (index % 3 == 2)
   {
-    System.out.print(str.substring(index, index+2));
+    System.out.print(str.substring(index, index+1));
   }
-
-  // If I am at the last letter,
-  // then only print that last letter
-  // instead of last two letters to avoid
-  // out of bounds error
-  if (index == str.length()-1)
-  {
-    System.out.print(str.substring(index));
-  }
-  index += 3; // Increment by 3 to skip every third letter
 }
 ```
