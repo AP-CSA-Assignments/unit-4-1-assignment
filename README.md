@@ -128,7 +128,7 @@ int index = 0;
 while (index < str.length())
 {
   // The index of every third letter is equal to 2 modulo 3
-  if (index % 3 == 2)
+  if (index % 3 != 2)
   {
     System.out.print(str.substring(index, index+1));
   }
